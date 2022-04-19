@@ -26,14 +26,17 @@ class ApiProvider {
     }
   }
 
-  Future postAnswersToQuestions(List<int> answers) async {
+  Future submitAnswersToQuestions(answers) async {
     try{
       // Response response = await _dio.post(_url, data: answers);
-      // return response;
+      // return response.statusCode == 200;
+      print(answers);
+      return true;
     } catch (error, stacktrace) {
       if (kDebugMode) {
         print("Exception occured: $error stackTrace: $stacktrace");
       }
+      return false;
     }
   }
 }

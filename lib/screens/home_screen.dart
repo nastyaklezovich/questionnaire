@@ -38,15 +38,7 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
-                Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        _continueBtn(),
-                        const SizedBox(height: 50,)
-                      ],
-                    )
-                ),
+                _continueBtn(),
               ],
             ),
           )

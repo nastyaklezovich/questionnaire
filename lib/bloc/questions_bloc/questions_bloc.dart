@@ -6,10 +6,14 @@ import 'package:questioner/resources/api_repository.dart';
 class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
   final ApiRepository _apiRepository = ApiRepository();
 
-  QuestionsBloc() : super(QuestionsLoading()) {
+  QuestionsBloc() : super(QuestionsInitial()) {
     on<FetchQuestionsEvent>((event, emit) async {
+      emit(QuestionsLoading());
       final response = await _apiRepository.fetchQuestionsList();
       emit(QuestionsLoaded(response));
+    });
+    on<SubmitQuestionsAnswersEvent>((event, emit) async {
+      await _apiRepository.submitAnswersToQuestions(event.results);
     });
   }
 

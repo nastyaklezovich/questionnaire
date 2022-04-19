@@ -6,8 +6,8 @@ class ApiRepository {
   Future fetchQuestionsList() =>
       _apiProvider.fetchQuestionsList();
 
-  Future postAnswersToQuestions(answers) =>
-      _apiProvider.postAnswersToQuestions(answers);
+  Future submitAnswersToQuestions(answers) =>
+      _apiProvider.submitAnswersToQuestions(answers);
 }
 
 class NetworkError extends Error {}

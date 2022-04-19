@@ -16,14 +16,11 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
-  QuestionsBloc? _bloc;
   final List _results = [];
   int _currentStep = 0;
 
   @override
   void initState() {
-    _bloc = BlocProvider.of<QuestionsBloc>(context);
-    _bloc!.add(FetchQuestionsEvent());
     super.initState();
   }
 
@@ -58,31 +55,34 @@ class _FormPageState extends State<FormPage> {
   }
 
   Widget _buildQuestionsList() {
-    return BlocBuilder<QuestionsBloc, QuestionsState>(
-      builder: (context, state) {
-        if (state is QuestionsInitial) {
-          return const Text('initial');
-        } else if (state is QuestionsLoading) {
-          return const Center(child: CircularProgressIndicator(),);
-        } else if (state is QuestionsLoaded) {
-          return Column(
-            children: [
-              _buildQuestion(
-                  question: state.questions[_currentStep],
-                  index: _currentStep + 1,
-                  questionsNumber: state.questions.length
-              ),
-              _nextBtn(maxNumber: state.questions.length - 1),
-              const SizedBox(height: 20,),
-              _backBtn()
-            ],
-          );
-        } else if (state is QuestionsError) {
-          return const Text('error');
-        } else {
-          return Container();
-        }
-      },
+    return BlocProvider(
+        create: (_) => QuestionsBloc()..add(FetchQuestionsEvent()),
+        child: BlocBuilder<QuestionsBloc, QuestionsState>(
+          builder: (context, state) {
+            if (state is QuestionsInitial) {
+              return const Text('initial');
+            } else if (state is QuestionsLoading) {
+              return const Center(child: CircularProgressIndicator(),);
+            } else if (state is QuestionsLoaded) {
+              return Column(
+                children: [
+                  _buildQuestion(
+                      question: state.questions[_currentStep],
+                      index: _currentStep + 1,
+                      questionsNumber: state.questions.length
+                  ),
+                  _buildNextBtn(maxNumber: state.questions.length - 1,  bloc: BlocProvider.of<QuestionsBloc>(context)),
+                  const SizedBox(height: 20,),
+                  _buildBackBtn()
+                ],
+              );
+            } else if (state is QuestionsError) {
+              return const Text('error');
+            } else {
+              return Container();
+            }
+          },
+        ),
     );
   }
 
@@ -125,7 +125,7 @@ class _FormPageState extends State<FormPage> {
           }
       );
 
-  Widget _nextBtn({maxNumber}) =>
+  Widget _buildNextBtn({maxNumber, bloc}) =>
       SizedBox(
         width: double.infinity,
         child: ElevatedButton(
@@ -140,7 +140,7 @@ class _FormPageState extends State<FormPage> {
         ),
       );
 
-  Widget _backBtn() =>
+  Widget _buildBackBtn() =>
       SizedBox(
         width: double.infinity,
         child: TextButton(
@@ -169,6 +169,10 @@ class _FormPageState extends State<FormPage> {
         _currentStep -= 1;
       });
     }
+  }
+
+  _submitAnswers(bloc){
+    bloc.add(SubmitQuestionsAnswersEvent(_results));
   }
 
   bool _isAnsweredQuestion() => _results.asMap().containsKey(_currentStep);
