@@ -7,7 +7,7 @@ abstract class QuestionsEvent extends Equatable{
 
 class FetchQuestionsEvent extends QuestionsEvent{}
 
-class SubmitQuestionsAnswersEvent extends QuestionsEvent{
-  final List results;
-  SubmitQuestionsAnswersEvent(this.results);
-}
+// class SubmitQuestionsAnswersEvent extends QuestionsEvent{
+//   final List results;
+//   SubmitQuestionsAnswersEvent(this.results);
+// }

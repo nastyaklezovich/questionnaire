@@ -6,7 +6,13 @@ import 'package:questioner/screens/form_screen.dart';
 import 'package:questioner/screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+        providers: [
+          BlocProvider(create: (_) => QuestionsBloc())
+        ],
+        child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Questionnaire',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),

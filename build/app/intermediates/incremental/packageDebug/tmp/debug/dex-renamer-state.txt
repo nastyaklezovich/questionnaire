@@ -1,4 +1,4 @@
-#Mon Apr 18 23:21:37 MSK 2022
-base.0=/Users/anastasiya/projects/questionnaire/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Tue Apr 19 12:51:15 MSK 2022
+base.0=/Users/nastassia/Documents/projects/questionnaire/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

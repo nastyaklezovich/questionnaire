@@ -12,9 +12,9 @@ class QuestionsBloc extends Bloc<QuestionsEvent, QuestionsState> {
       final response = await _apiRepository.fetchQuestionsList();
       emit(QuestionsLoaded(response));
     });
-    on<SubmitQuestionsAnswersEvent>((event, emit) async {
-      await _apiRepository.submitAnswersToQuestions(event.results);
-    });
+    // on<SubmitQuestionsAnswersEvent>((event, emit) async {
+    //   await _apiRepository.submitAnswersToQuestions(event.results);
+    // });
   }
 
 }

@@ -16,7 +16,8 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: Constants.defaultHorizontalPadding),
+                horizontal: Constants.defaultHorizontalPadding,
+                vertical: Constants.defaultVerticalPadding),
             child: Column(
               children: <Widget>[
                 const Text(
@@ -38,7 +39,9 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
+                const Spacer(),
                 _continueBtn(),
+                const SizedBox(height: 50,)
               ],
             ),
           )
