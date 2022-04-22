@@ -1,38 +1,39 @@
 import 'answer_model.dart';
 
-class QuestionsModel{
+class QuestionsModelList {
   List<QuestionModel>? questions;
   String? error;
 
-  QuestionsModel({this.questions, this.error});
+  QuestionsModelList({this.questions, this.error});
 
-  QuestionsModel.withError(String errorMessage) {
-    error = errorMessage;
-  }
+  factory QuestionsModelList.fromJson(Map<String, dynamic> json) =>
+      QuestionsModelList(
+        questions: (json['questions'] as List?)?.map((item) =>
+            QuestionModel.fromJson(item)).toList(),
+      );
 
-  QuestionsModel.fromJson(Map<String, dynamic> json){
-    if (json['questions'] != null) {
-      questions = [];
-      json['questions'].forEach((item) {
-        questions!.add(QuestionModel.fromJson(item));
-      });
-    }
+  QuestionsModelList copyWith({
+    String? error,
+    List<QuestionModel>? questions,
+  }) {
+    return QuestionsModelList(
+      error: error ?? this.error,
+      questions: questions ?? this.questions,
+    );
   }
 }
 
-class QuestionModel{
+class QuestionModel {
   String? title;
   List<AnswerModel>? answers;
 
   QuestionModel({this.title, this.answers});
 
-  QuestionModel.fromJson(Map<String, dynamic> json) {
-    title = json['title'] ?? '';
-    if (json['answers'] != null) {
-      answers = [];
-      json['answers'].forEach((item) {
-        answers!.add(AnswerModel.fromJson(item));
-      });
-    }
-  }
+  factory QuestionModel.fromJson(Map<String, dynamic> json) =>
+      QuestionModel(
+        title: json['title'] ?? '',
+        answers: (json['answers'] as List?)?.map((item)=>
+            AnswerModel.fromJson(item)).toList(),
+      );
+
 }

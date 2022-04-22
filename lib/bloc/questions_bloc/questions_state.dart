@@ -7,17 +7,34 @@ abstract class QuestionsState extends Equatable{
   List<Object?> get props => [];
 }
 
-class QuestionsInitial extends QuestionsState {}
-
 class QuestionsLoading extends QuestionsState {}
 
 class QuestionsLoaded extends QuestionsState {
-  final List<QuestionModel> questions;
-  QuestionsLoaded(this.questions);
+  final QuestionsModelList questions;
+  final int step;
+  final List<String> answers;
+
+  QuestionsLoaded({required this.questions, required this.step,
+    required this.answers});
+
+  QuestionsLoaded copyWith({
+    QuestionsModelList? questions,
+    int? step,
+    List<String>? answers
+  }) {
+    return QuestionsLoaded(
+        questions: questions ?? this.questions,
+        step: step ?? this.step,
+        answers: answers ?? this.answers);
+  }
 
   @override
-  List<Object> get props => [questions];
+  List<Object> get props => [questions, step, answers];
 }
+
+class ResponsesSentSuccessfully extends QuestionsState{}
+
+class ResponsesSendingError extends QuestionsState{}
 
 class QuestionsError extends QuestionsState {
   final String error;
@@ -26,3 +43,4 @@ class QuestionsError extends QuestionsState {
   @override
   List<Object> get props => [error];
 }
+

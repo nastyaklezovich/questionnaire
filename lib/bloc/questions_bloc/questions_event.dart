@@ -7,7 +7,17 @@ abstract class QuestionsEvent extends Equatable{
 
 class FetchQuestionsEvent extends QuestionsEvent{}
 
-// class SubmitQuestionsAnswersEvent extends QuestionsEvent{
-//   final List results;
-//   SubmitQuestionsAnswersEvent(this.results);
-// }
+class SubmitQuestionsAnswersEvent extends QuestionsEvent{}
+
+class SelectAnswerEvent extends QuestionsEvent{
+  final answer;
+
+  SelectAnswerEvent({required this.answer});
+
+  @override
+  List<Object> get props => [answer];
+}
+
+class NextQuestionEvent extends QuestionsEvent{}
+
+class PrevQuestionEvent extends QuestionsEvent{}

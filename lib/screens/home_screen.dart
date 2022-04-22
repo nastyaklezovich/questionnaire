@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
                 horizontal: Constants.defaultHorizontalPadding,
                 vertical: Constants.defaultVerticalPadding),
             child: Column(
-              children: <Widget>[
+              children: [
                 const Text(
                   'We are having trouble finding your information.',
                   textAlign: TextAlign.center,
@@ -32,10 +32,11 @@ class _HomePageState extends State<HomePage> {
                     height: 100,
                     image: NetworkImage(
                         'https://pics.freeicons.io/uploads/icons/png/12583467711582994875-512.png'),
-                  ),),
+                  ),
+                ),
                 const Text(
                   "That's ok though! We'll use another method to verify your identity. "
-                      "Tap Continue below to complete your form",
+                  "Tap Continue below to complete your form",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
                 ),
@@ -49,8 +50,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _continueBtn() =>
-      SizedBox(
+  Widget _continueBtn() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () => Navigator.pushNamed(context, '/form'),
@@ -59,8 +59,7 @@ class _HomePageState extends State<HomePage> {
               primary: Colors.lightBlue[800],
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
               minimumSize: const Size.fromHeight(40),
-              textStyle: const TextStyle(
-                  fontSize: 16)),
+              textStyle: const TextStyle(fontSize: 16)),
         ),
       );
 }

@@ -12,17 +12,15 @@ class ApiProvider {
 
   Future fetchQuestionsList() async {
     try {
+      Future.delayed(const Duration(seconds:2));
       final String response = await rootBundle.loadString('lib/assets/questions.json');
-      var decodedResponse = json.decode(response);
-      QuestionsModel map = QuestionsModel.fromJson(decodedResponse);
-      return map.questions;
+      final decodedResponse = json.decode(response);
+      return QuestionsModelList.fromJson(decodedResponse);
       // Response response = await _dio.get(_url);
       // return QuestionsModel.fromJson(response);
     } catch (error, stacktrace) {
-      if (kDebugMode) {
-        print("Exception occured: $error stackTrace: $stacktrace");
-      }
-      return QuestionsModel.withError("Data not found / Connection issue");
+      debugPrint("Exception occured: $error stackTrace: $stacktrace");
+      return QuestionsModelList(error: "Data not found / Connection issue");
     }
   }
 
@@ -30,12 +28,10 @@ class ApiProvider {
     try{
       // Response response = await _dio.post(_url, data: answers);
       // return response.statusCode == 200;
-      print(answers);
+      answers.forEach((item) => debugPrint(item));
       return true;
     } catch (error, stacktrace) {
-      if (kDebugMode) {
-        print("Exception occured: $error stackTrace: $stacktrace");
-      }
+      debugPrint("Exception occured: $error stackTrace: $stacktrace");
       return false;
     }
   }

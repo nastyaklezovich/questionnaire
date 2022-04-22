@@ -1,7 +1,9 @@
 import 'api_provider.dart';
 
 class ApiRepository {
-  final _apiProvider = ApiProvider();
+  final ApiProvider _apiProvider;
+
+  ApiRepository(this._apiProvider);
 
   Future fetchQuestionsList() =>
       _apiProvider.fetchQuestionsList();

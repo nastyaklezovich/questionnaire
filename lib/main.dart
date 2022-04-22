@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:questioner/bloc/questions_bloc/questions_bloc.dart';
+import 'package:questioner/resources/api_provider.dart';
+import 'package:questioner/resources/api_repository.dart';
 import 'package:questioner/screens/form_screen.dart';
 import 'package:questioner/screens/home_screen.dart';
 
@@ -9,7 +10,9 @@ void main() {
   runApp(
       MultiProvider(
         providers: [
-          BlocProvider(create: (_) => QuestionsBloc())
+          Provider(create: (context) => ApiProvider()),
+          Provider(create:(context) => ApiRepository(context.read())),
+          Provider(create:(context) => QuestionsBloc(context.read())),
         ],
         child: const MyApp(),
   ));
