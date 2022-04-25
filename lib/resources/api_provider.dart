@@ -28,7 +28,8 @@ class ApiProvider {
     try{
       // Response response = await _dio.post(_url, data: answers);
       // return response.statusCode == 200;
-      answers.forEach((item) => debugPrint(item));
+      Future.delayed(const Duration(seconds:2));
+      answers.forEach((item) => debugPrint(item.toString()));
       return true;
     } catch (error, stacktrace) {
       debugPrint("Exception occured: $error stackTrace: $stacktrace");

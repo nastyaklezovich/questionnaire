@@ -5,6 +5,7 @@ import 'package:questioner/resources/api_provider.dart';
 import 'package:questioner/resources/api_repository.dart';
 import 'package:questioner/screens/form_screen.dart';
 import 'package:questioner/screens/home_screen.dart';
+import 'package:questioner/screens/result_screen.dart';
 
 void main() {
   runApp(
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/home': (context) => const HomePage(),
             '/form': (context) => const FormPage(),
+            '/result': (context) => const ResultPage(),
           },
         );
   }

@@ -12,7 +12,7 @@ class QuestionsLoading extends QuestionsState {}
 class QuestionsLoaded extends QuestionsState {
   final QuestionsModelList questions;
   final int step;
-  final List<String> answers;
+  final List<int> answers;
 
   QuestionsLoaded({required this.questions, required this.step,
     required this.answers});
@@ -20,7 +20,7 @@ class QuestionsLoaded extends QuestionsState {
   QuestionsLoaded copyWith({
     QuestionsModelList? questions,
     int? step,
-    List<String>? answers
+    List<int>? answers
   }) {
     return QuestionsLoaded(
         questions: questions ?? this.questions,
