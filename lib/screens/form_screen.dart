@@ -124,7 +124,7 @@ class _FormPageState extends State<FormPage> {
         child: ListView.builder(
             itemCount: answersList.length,
             itemBuilder: (BuildContext context, int index) {
-              return _checkListItem(
+              return _buildCheckListItem(
                   answersList: answersList,
                   answerNumber: index,
                   answers: answers,
@@ -133,7 +133,7 @@ class _FormPageState extends State<FormPage> {
             }),
       );
 
-  Widget _checkListItem({required List answersList, required int answerNumber,
+  Widget _buildCheckListItem({required List answersList, required int answerNumber,
     required List answers, required int currentQuestionIndex}) =>
        Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),

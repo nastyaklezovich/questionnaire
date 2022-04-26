@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 16),
                 ),
                 const Spacer(),
-                _continueBtn(),
+                _buildContinueBtn(),
                 const SizedBox(height: 50,)
               ],
             ),
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _continueBtn() => SizedBox(
+  Widget _buildContinueBtn() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () => Navigator.pushNamed(context, '/form'),
